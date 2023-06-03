@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package watercontrol.models;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/f0rmul/sensor-control/pkg/snapshot_v1;snapshot_v1";
+
+message Snapshot {
+    string snapshot_id = 1;
+    string sensor_id = 2;
+    string sensor_name = 3;
+
+    enum SensorState{
+        NORMAL = 0;
+        WARNING = 1;
+    }
+
+    SensorState state = 4;
+    google.protobuf.Timestamp timestamp = 5;
+}

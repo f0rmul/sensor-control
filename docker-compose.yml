@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  sensor-control:
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - rabbitmq
+      - mongodb
+    restart: always
+    networks:
+      - default
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_container
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGODB_DATABASE: snapshots
+    ports:
+      - 27017:27017
+    networks:
+      - default
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+        - 5672:5672
+        - 15672:15672
+    networks:
+        - default
+networks:
+  default:
+    driver: bridge

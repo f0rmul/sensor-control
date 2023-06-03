@@ -1,0 +1,33 @@
+
+rabbitmq:
+  host: rabbitmq
+  port: 5672
+  user: guest
+  password: guest
+  exchange: snapshot-exchange
+  queue: snapshot-queue
+  routingKey: snapshot-routing-key
+  consumerTag: snapshot-consumer
+  workerPool: 3
+
+mongodb:
+  host: mongodb
+  port: 27017
+  user: admin
+  password: admin
+  db: snapshots
+
+http-server:
+  appVersion: 1.0.0
+  host: sensor-control
+  port: 8080
+  readTimeout: 5s
+  writeTimeout: 5s
+  shutdownTimeout: 4s
+
+logger:
+  development: true
+  disableCaller: false
+  disableStacktrace: false
+  encoding: json
+  level: info
